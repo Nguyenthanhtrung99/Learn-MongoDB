@@ -1,0 +1,157 @@
+
+use learn_mongoDB
+
+db.createCollection('posts')
+
+# 1 insert a document
+
+db.posts.insert({
+   title: 'Post One',
+   body: 'Body of post one',
+   category: 'News',
+   likes: 4,
+   tags: ['news', 'events'],
+   user: {
+	name:'Nguyen Thanh Trung',
+	status: 'author'
+   },
+   date: Date()
+})
+
+# 2 insert multiple documents
+
+db.posts.insert([
+{
+   title: 'Post Two',
+   body: 'Body of post two',
+   category: 'Technology',
+   date: Date()
+},
+{
+   title: 'Post Three',
+   body: 'Body of post three',
+   category: 'News',
+   date: Date()
+},
+{
+   title: 'Post Four',
+   body: 'Body of post three',
+   category: 'Entertainment',
+   date: Date()
+}
+])
+
+# 3 find documents
+
+db.posts.find()
+
+db.posts.find().pretty()
+
+db.posts.find({category: 'News'}).pretty()
+
+db.posts.find().limit(2)
+
+db.posts.findOne({category: 'News'})
+
+# 4 sort documents
+
+db.posts.find().sort({title: 1}).pretty()  # 1 for asc
+
+db.posts.find().sort({title: -1}).pretty() # -1 for desc
+
+
+# 5 count
+
+db.posts.find({ category: 'News'}).count()
+
+# 6 forEach
+
+db.posts.find().forEach(function(doc) { print('Blog Post: ' + doc.title)})
+
+# 7 update
+
+db.posts.update({title: 'Post Two'},
+	{
+		title: 'Post Two',
+		body: 'New post 2 body',
+		date: Date()
+	}
+)
+
+
+db.posts.update({title: 'Post Two'},
+	{
+		$set: {
+		body: 'Body of post 2',
+		category: 'Technology'
+		}
+	}
+)
+
+# 8 increment field ($inc)
+
+db.posts.update({title: 'Post One'}, {$inc: {likes:2}})
+
+# 9 rename field
+
+db.posts.update({title: 'Post One'},
+	{
+	$rename: {
+			likes: 'views'
+		 }
+	}
+)
+
+# 10 remove
+
+db.posts.remove({title: 'Post Four'})
+
+# 11 create sub-documents
+
+db.posts.update({title: 'Post One'},
+{
+	$set: {
+	  comments: [
+		{
+			user: 'Mary Williams',
+			body: 'Comment One',
+			date: Date()
+		},
+		{
+			user: 'Harry White',
+			body: 'Comment Two',
+			date: Date()
+		}
+            ]
+        }
+    }
+)
+
+# 12 find by element in array ($elemMatch)
+
+db.posts.find({
+	comments: {
+		$elemMatch: {
+			user: 'Mary Williams'
+		}
+	}
+}).pretty()
+
+# 13 create index ( type of text )
+
+db.posts.createIndex({title: 'text'})
+
+# 14 search text index
+
+db.posts.find({
+  $text: {
+    $search: "\"Post T\""
+    }
+}).pretty()
+
+# 13 find greater and less than
+
+db.posts.find({ views: { $gt: 2 } })
+db.posts.find({ views: { $gte: 7 } })
+db.posts.find({ views: { $lt: 7 } })
+db.posts.find({ views: { $lte: 7 } })
