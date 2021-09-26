@@ -1,0 +1,47 @@
+[{
+  "_id": {
+    "$oid": "614c45d2617691fe8d85103b"
+  },
+  "title": "Post One",
+  "body": "Body of post one",
+  "category": "News",
+  "tags": [
+    "news",
+    "events"
+  ],
+  "user": {
+    "name": "Nguyen Thanh Trung",
+    "status": "author"
+  },
+  "date": "Thu Sep 23 2021 16:16:02 GMT+0700 (SE Asia Standard Time)",
+  "views": 6,
+  "comments": [
+    {
+      "user": "Mary Williams",
+      "body": "Comment One",
+      "date": "Sun Sep 26 2021 09:43:43 GMT+0700 (SE Asia Standard Time)"
+    },
+    {
+      "user": "Harry White",
+      "body": "Comment Two",
+      "date": "Sun Sep 26 2021 09:43:43 GMT+0700 (SE Asia Standard Time)"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "614c4c0a617691fe8d85103c"
+  },
+  "title": "Post Two",
+  "body": "Body of post 2",
+  "date": "Sun Sep 26 2021 07:36:03 GMT+0700 (SE Asia Standard Time)",
+  "category": "Technology",
+  "views": 10
+},{
+  "_id": {
+    "$oid": "614c4c0a617691fe8d85103d"
+  },
+  "title": "Post Three",
+  "body": "Body of post three",
+  "category": "News",
+  "date": "Thu Sep 23 2021 16:42:34 GMT+0700 (SE Asia Standard Time)"
+}]
