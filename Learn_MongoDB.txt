@@ -149,7 +149,7 @@ db.posts.find({
     }
 }).pretty()
 
-# 13 find greater and less than
+# 15 find greater and less than
 
 db.posts.find({ views: { $gt: 2 } })
 db.posts.find({ views: { $gte: 7 } })
